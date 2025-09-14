@@ -5,6 +5,7 @@ import cors from 'cors';
 import { UserRoutes } from './app/modules/user/user.route';
 import { success } from 'zod';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
+import notFound from './app/middleware/notFound';
 
 const app: Application = express();
 
@@ -22,5 +23,6 @@ const getAController = (req: Request, res: Response) => {
 };
 
 app.get('/', getAController);
+app.use(notFound)
 app.use(globalErrorHandler);
 export default app;
