@@ -1,10 +1,17 @@
-import { Request, Response } from "express";
-import { StudentServices } from "./user.service";
+import { NextFunction, Request, Response } from 'express';
+import { StudentServices } from './user.service';
 
-const createStudent = async (req: Request, res: Response) => {
+const createStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const { student: studentData,password } = req.body;
-    const result = await StudentServices.createStudentIntoDB(password,studentData);
+    const { student: studentData, password } = req.body;
+    const result = await StudentServices.createStudentIntoDB(
+      password,
+      studentData,
+    );
 
     res.status(200).json({
       success: true,
@@ -12,7 +19,7 @@ const createStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
