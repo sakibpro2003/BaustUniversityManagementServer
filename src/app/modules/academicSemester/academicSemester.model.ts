@@ -38,6 +38,7 @@ const acdemicSemesterSchema = new Schema<TAcademicSemester>(
   },
 );
 
+
 acdemicSemesterSchema.pre('save', async function (next) {
   const isSemesterExists = await AcademicSemester.findOne({
     year: this.year,
@@ -60,8 +61,6 @@ export const AcademicSemester = model<TAcademicSemseter>(
 // 2031 Autumn
 //2030 Autumn => XXX
 //2030 Fall => Created
-
-
 
 // Autumn 01
 // Summar 02

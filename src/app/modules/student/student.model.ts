@@ -75,6 +75,10 @@ const studentSchema = new Schema<Student>({
     ref: 'User',
   },
   name: userNameSchema,
+  admissionSemester: {
+    type: Schema.Types.ObjectId,
+    ref: 'AcademicSemester',
+  },
   gender: ['male', 'female'],
   dateOfBirth: { type: String },
   email: { type: String, required: true },
@@ -87,7 +91,5 @@ const studentSchema = new Schema<Student>({
   localGuardian: localGuradianSchema,
   profileImg: { type: String },
 });
-
-
 
 export const StudentModel = model<Student>('Student', studentSchema);
