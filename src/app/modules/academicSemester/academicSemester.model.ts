@@ -5,6 +5,9 @@ import {
   Months,
 } from './academicSemester.constant';
 import { TAcademicSemester } from './academicSemester.interface';
+import { AppError } from '../../errors/AppError';
+import httpStatus from 'http-status';
+
 
 const acdemicSemesterSchema = new Schema<TAcademicSemester>(
   {
@@ -46,7 +49,7 @@ acdemicSemesterSchema.pre('save', async function (next) {
   });
 
   if (isSemesterExists) {
-    throw new Error('Semester is already exists !');
+    throw new AppError(httpStatus.NOT_IMPLEMENTED,'Semester is already exists !');
   }
   next();
 });
